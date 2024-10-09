@@ -1,0 +1,39 @@
+<!-- src/main/resources/templates/login.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script th:inline="javascript">
+        /* 세션에 'errorMessage'가 존재하는지 확인 */
+        var errorMessage = /*[[${session.errorMessage}]]*/ null;
+        if (errorMessage) {
+            alert(errorMessage);
+        }
+    </script>
+</head>
+<body>
+<div class="login-container">
+    <h1>로그인</h1>
+
+    <!-- 로그아웃 성공 메시지 표시 -->
+    <div th:if="${param.logout}">
+        <p style="color: green;">로그아웃 되었습니다.</p>
+    </div>
+
+    <form action="/login" method="post">
+        <div class="form-group">
+            <label for="username">사용자 이름:</label>
+            <input type="text" id="username" name="username" class="form-input" required>
+        </div>
+        <div class="form-group">
+            <label for="password">비밀번호:</label>
+            <input type="password" id="password" name="password" class="form-input" required>
+        </div>
+        <button type="submit" class="login-button">로그인</button>
+    </form>
+</div>
+</body>
+</html>

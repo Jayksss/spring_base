@@ -1,0 +1,21 @@
+<!-- layout.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:replace="${title} ?: 'My Website'">My Website</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/scripts.js"></script>
+</head>
+<body>
+<!-- 헤더 포함 -->
+<div th:replace="common/header :: header"></div>
+
+<!-- 컨텐츠 영역 -->
+<main class="container mt-5" th:replace="${content}"></main>
+
+<!-- 푸터 포함 -->
+<div th:replace="common/footer :: footer"></div>
+</body>
+</html>

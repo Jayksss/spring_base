@@ -1,0 +1,57 @@
+plugins {
+    id 'java'
+    id 'war'
+    id 'org.springframework.boot' version '3.3.4'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.jayksss'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot Starter Dependencies
+    implementation 'org.springframework.boot:spring-boot-starter-security' // Spring Security 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // Thymeleaf 템플릿 엔진
+    implementation 'org.springframework.boot:spring-boot-starter-web' // Spring MVC 및 RESTful 웹 개발
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc' // JDBC를 통한 데이터베이스 연결
+
+    // Thymeleaf Extras Dependencies
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6' // Thymeleaf에서 Spring Security 기능 사용
+
+    // Lombok Dependencies
+    compileOnly 'org.projectlombok:lombok' // Lombok 라이브러리 (컴파일 시에만 사용)
+    annotationProcessor 'org.projectlombok:lombok' // Lombok 주석 처리기
+
+    // Development Dependencies
+    developmentOnly 'org.springframework.boot:spring-boot-devtools' // 개발 편의 기능 (자동 재시작 등)
+
+    // Runtime Dependencies
+    runtimeOnly 'com.mysql:mysql-connector-j' // MySQL JDBC 드라이버
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat' // 내장 Tomcat 서버
+
+    // Testing Dependencies
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' // 통합 테스트 라이브러리
+    testImplementation 'org.springframework.security:spring-security-test' // Spring Security 테스트 도구
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher' // JUnit 테스트 런처
+}
+
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
