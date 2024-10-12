@@ -1,10 +1,10 @@
 package com.jayksss.spring_base.login.mapper;
 
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Map;
 
-@Repository
+@Mapper
 public interface LoginMapper {
 
     Map<String, Object> selectLoginUser(Map<String, Object> params);

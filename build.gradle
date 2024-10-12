@@ -24,12 +24,27 @@ repositories {
     mavenCentral()
 }
 
+tasks.withType(JavaExec) {
+    jvmArgs = [
+            '-Dfile.encoding=UTF-8',
+            '-Duser.language=ko',
+            '-Duser.country=KR',
+            '-Xms512m',
+            '-Xmx2048m',
+            '-XX:+UseG1GC',
+            '-XX:+HeapDumpOnOutOfMemoryError',
+            '-XX:HeapDumpPath=./heapdumps/heapdump.hprof'
+    ]
+}
+
 dependencies {
     // Spring Boot Starter Dependencies
     implementation 'org.springframework.boot:spring-boot-starter-security' // Spring Security 의존성
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // Thymeleaf 템플릿 엔진
     implementation 'org.springframework.boot:spring-boot-starter-web' // Spring MVC 및 RESTful 웹 개발
     implementation 'org.springframework.boot:spring-boot-starter-jdbc' // JDBC를 통한 데이터베이스 연결
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1' // MyBatis 설정
+    implementation 'mysql:mysql-connector-java:8.0.33' // MySQL 연결 드라이버 설정
 
     // Thymeleaf Extras Dependencies
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6' // Thymeleaf에서 Spring Security 기능 사용
